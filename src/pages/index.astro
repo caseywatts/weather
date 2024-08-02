@@ -1,4 +1,8 @@
 ---
+import WeatherWidget from "../components/WeatherWidget.svelte";
+const { VITE_PIRATEWEATHER_KEY, VITE_DEFAULT_LAT, VITE_DEFAULT_LON } = import.meta.env;
+const apiRequestUrl = `https://api.pirateweather.net/forecast/${VITE_PIRATEWEATHER_KEY}/${VITE_DEFAULT_LAT}%2C${VITE_DEFAULT_LON}?exclude=minutely%2Cdaily&extend=true`;
+const weatherData = await(await fetch(apiRequestUrl)).json();
 
 ---
 
@@ -11,6 +15,6 @@
 		<title>Astro</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<WeatherWidget weatherData={weatherData}/>
 	</body>
 </html>
